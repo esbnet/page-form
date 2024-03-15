@@ -91,12 +91,14 @@ export async function GetFormById(id: number) {
     throw new UserNotFoundErr();
   }
 
-  return await prisma.form.findUnique({
+  const form = await prisma.form.findUnique({
     where: {
       userId: user.id,
       id,
     },
   });
+
+  return form;
 }
 
 export async function UpdateFormContent(id: number, jsonContent: string) {
